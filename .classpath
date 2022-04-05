@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="lib" path="build/libs/executionRoutes-1.0.jar"/>
+	<classpathentry kind="lib" path="build/resources/main/junit4/junit-4.12-kgp-custom.jar"/>
+	<classpathentry kind="lib" path="gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/junit4/junit-4.12-kgp-custom.jar"/>
+	<classpathentry kind="output" path="build/classes/java/main"/>
+</classpath>
