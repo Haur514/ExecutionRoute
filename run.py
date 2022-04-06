@@ -42,11 +42,14 @@ def failedTestClass(homeDir):
 
 currentDir = os.getcwd()
 
-homeDir = '/home/h-yosiok/Lab/d4j/lang_'+sys.argv[1]+'_buggy/'
+homeDir = '/home/h-yosiok/Lab/d4j/time_'+sys.argv[1]+'_buggy/'
 testDir = homeDir+'/src/test/'
 os.makedirs(homeDir+'target/jacocoexec',exist_ok=True)
 
 
+###############################################################################
+#LANG向けの処理
+###############################################################################
 #pomファイルにjacocoの依存関係を入れる
 os.system("python3 addJacocoPomFile.py "+sys.argv[1])
 
@@ -56,11 +59,16 @@ os.system("python3 addSurefireVersion.py "+sys.argv[1])
 #maven.compileのバージョンが不適切なため，修正する
 os.system("python3 modifyCompileVersion.py "+sys.argv[1])
 
-#"[ERROR] /home/h-yosiok/Lab/d4j/lang_24_buggy/src/test/java/org/apache/commons/lang3/reflect/TypeUtilsTest.java:[507,40] エラー: 不適合な型: 推論型が上限に適合しません"のバグを，TypeUtilsTestの中身を削除することで取り除く.
+#"[ERROR] /home/h-yosiok/Lab/d4j/time_24_buggy/src/test/java/org/apache/commons/time3/reflect/TypeUtilsTest.java:[507,40] エラー: 不適合な型: 推論型が上限に適合しません"のバグを，TypeUtilsTestの中身を削除することで取り除く.
 os.system("python3 removeTypeUtilsTest.py "+sys.argv[1])
 
+###############################################################################
+#TIME向けの処理
+###############################################################################
+os.system("python3 modify_junit_version.py "+sys.argv[1])
 
-
+# JUnitのバージョンが3.0.0-M1で無いものはこれに書き換える
+os.system("python3 modify_surefire_version.py "+sys.argv[1])
 
 executionTestFQNs = set()
 
@@ -88,6 +96,7 @@ for test in executionTestFQNs:
             print(test+"\n")
             if os.path.exists(homeDir+"target/jacoco.exec"):
                 os.remove(homeDir+"target/jacoco.exec")
+            print("mvn jacoco:report test -Dtest="+test)
             os.system("mvn jacoco:report test -Dtest="+test)
             if os.path.exists(homeDir+"target/jacoco.exec"):
                 shutil.copy(homeDir+"target/jacoco.exec",homeDir+"target/jacocoexec/"+test+".exec")
@@ -98,4 +107,4 @@ f.close()
 testNameFile.close()
 
 os.chdir(currentDir)
-os.system('gradle run --args /home/h-yosiok/Lab/d4j/lang_'+sys.argv[1]+'_buggy')
+os.system('gradle run --args /home/h-yosiok/Lab/d4j/time_'+sys.argv[1]+'_buggy')

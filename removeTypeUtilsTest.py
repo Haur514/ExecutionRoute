@@ -16,9 +16,10 @@ def checkPomExistence():
         sys.exit(1)
 
 
-homeDir = '/home/h-yosiok/Lab/d4j/lang_'+sys.argv[1]+'_buggy/'
+homeDir = '/home/h-yosiok/Lab/d4j/time_'+sys.argv[1]+'_buggy/'
 test_file_dir = homeDir+"src/test/java/org/apache/commons/lang3/reflect/"
 test_file_name = "TypeUtilsTest.java"
+
 
 if not os.path.exists(test_file_dir+test_file_name):
     sys.exit(1)

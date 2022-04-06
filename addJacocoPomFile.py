@@ -6,7 +6,7 @@ import shutil
 
 
 
-homeDir = '/home/h-yosiok/Lab/d4j/lang_'+sys.argv[1]+'_buggy/'
+homeDir = '/home/h-yosiok/Lab/d4j/time_'+sys.argv[1]+'_buggy/'
 testDir = homeDir+'/src/test/'
 
 if os.path.exists(homeDir+"original_pom.xml"):

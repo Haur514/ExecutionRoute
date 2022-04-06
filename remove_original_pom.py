@@ -14,7 +14,7 @@ def checkPomExistence():
         sys.exit(1)
 
 
-homeDir = '/home/h-yosiok/Lab/d4j/lang_'+sys.argv[1]+'_buggy/'
+homeDir = '/home/h-yosiok/Lab/d4j/time_'+sys.argv[1]+'_buggy/'
 
 if not os.path.exists(homeDir+"original_pom.xml"):
     sys.exit(1)
